@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
 import Axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const App = () => {
+  const navigate = useNavigate()
   const url = "https://autoapi.dezinfeksiyatashkent.uz/api/auth/signin";
   const [data, setData] = useState({
     phone_number: "",
