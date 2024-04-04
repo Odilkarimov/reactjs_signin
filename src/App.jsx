@@ -3,7 +3,7 @@ import Axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const App = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const url = "https://autoapi.dezinfeksiyatashkent.uz/api/auth/signin";
   const [data, setData] = useState({
     phone_number: "",
@@ -22,18 +22,21 @@ const App = () => {
       phone_number: data.phone_number,
       password: data.password,
     };
-    console.log(data);
-    try {
-      const response = await Axios.post(url, userData);
-      console.log(response);
-      localStorage.setItem("userData", JSON.stringify(userData));
-    } catch (error) {
-      console.error(error);
-    }
+    Axios.post(url, userData)
+      .then((res) => {
+        if (res) {
+          navigate("/home")
 
-    Axios.post(url, userData).then((response) => {
-      console.log(response);
-    });
+        }
+        console.log(res.data?.data?.tokens?.accessToken?.token);
+        localStorage.setItem(
+          "token",
+          res.data?.data?.tokens?.accessToken?.token
+        );
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
