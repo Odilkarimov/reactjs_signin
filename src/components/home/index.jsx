@@ -8,7 +8,7 @@ const Home = () => {
   const [images, setImages] = useState(null);
   const [tabs, setTabs] = useState({
     name_en: "",
-    name_ru: ""
+    name_ru: "",
   });
   const [editingCategoryId, setEditingCategoryId] = useState(null);
 
@@ -27,6 +27,9 @@ const Home = () => {
   };
 
   const handleOk = () => {
+    setTimeout(() => {
+      window.location.reload();
+    }, 2000);
     setIsModalOpen(false);
     setEditingCategoryId(null);
   };
@@ -172,18 +175,14 @@ const Home = () => {
               className="flex flex-col gap-[30px]"
             >
               <input
-                onChange={(e) =>
-                  setTabs({ ...tabs, name_en: e.target.value })
-                }
+                onChange={(e) => setTabs({ ...tabs, name_en: e.target.value })}
                 type="text"
                 placeholder="text en"
                 value={tabs.name_en}
                 className="w-[300px] h-[60px] border-2 border-black px-[10px] py-[20px] rounded-xl"
               />
               <input
-                onChange={(e) =>
-                  setTabs({ ...tabs, name_ru: e.target.value })
-                }
+                onChange={(e) => setTabs({ ...tabs, name_ru: e.target.value })}
                 type="text"
                 placeholder="text ru"
                 value={tabs.name_ru}
@@ -195,6 +194,11 @@ const Home = () => {
                 className="w-[300px] h-[60px] border-2 border-black px-[10px] py-[20px] rounded-xl"
               />
               <button
+                onClick={() => {
+                  setTimeout(() => {
+                    window.location.reload();
+                  }, 1500);
+                }}
                 type="submit"
                 className="border-2 border-black w-[120px] rounded-2xl px-[10px] py-[5px]"
               >

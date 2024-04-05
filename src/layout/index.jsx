@@ -6,7 +6,8 @@ const Layout = () => {
   const token = localStorage.getItem("token");
   return (
     <>
-      {!token && (
+      {
+      !token && (
         <header>
           <App />
         </header>
